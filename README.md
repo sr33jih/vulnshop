@@ -307,5 +307,5 @@ MIT License - This project is for educational purposes only.
 
 **Happy Hacking! 🔐**
 
-Remember: Use your skills responsibly and only on systems you have permission to test.
+
 
