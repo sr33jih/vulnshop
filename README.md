@@ -300,7 +300,6 @@ MIT License - This project is for educational purposes only.
 
 ## 🙏 Acknowledgments
 
-- Inspired by [OWASP crAPI](https://github.com/OWASP/crAPI)
 - Built for learning OWASP API Security Top 10
 - Created for cybersecurity education
 
@@ -309,3 +308,4 @@ MIT License - This project is for educational purposes only.
 **Happy Hacking! 🔐**
 
 Remember: Use your skills responsibly and only on systems you have permission to test.
+
