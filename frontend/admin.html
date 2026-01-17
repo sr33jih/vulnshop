@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - VulnShop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>VulnShop Admin</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="admin.html" class="nav-link active">Admin</a>
+                <button class="btn btn-secondary" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="admin-container">
+            <h1>Admin Dashboard</h1>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p class="stat-value" id="userCount">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Products</h3>
+                    <p class="stat-value" id="productCount">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Orders</h3>
+                    <p class="stat-value" id="orderCount">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Revenue</h3>
+                    <p class="stat-value" id="revenue">-</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="showAdminSection('users')">Users</button>
+                <button class="tab-btn" onclick="showAdminSection('orders')">Orders</button>
+                <button class="tab-btn" onclick="showAdminSection('products')">Products</button>
+            </div>
+
+            <!-- Users Section -->
+            <div id="usersSection" class="admin-section">
+                <h2>All Users</h2>
+                <div id="usersList" class="data-table">
+                    <!-- Users will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="ordersAdminSection" class="admin-section" style="display: none;">
+                <h2>All Orders</h2>
+                <div id="ordersAdminList" class="data-table">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div id="productsAdminSection" class="admin-section" style="display: none;">
+                <h2>Manage Products</h2>
+                <button class="btn btn-primary" onclick="showAddProductForm()">Add New Product</button>
+                <div id="productsAdminList" class="data-table">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 VulnShop - Educational Penetration Testing Lab</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  database:
+    image: postgres:15-alpine
+    container_name: vulnshop-db
+    environment:
+      POSTGRES_USER: vulnshop
+      POSTGRES_PASSWORD: vulnerable123
+      POSTGRES_DB: vulnshop
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - vulnshop-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U vulnshop" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build: ./backend
+    container_name: vulnshop-api
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_USER=vulnshop
+      - DB_PASSWORD=vulnerable123
+      - DB_NAME=vulnshop
+      - JWT_SECRET=insecure_jwt_secret_12345
+      - PORT=3000
+    ports:
+      - "3001:3000"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - vulnshop-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # Frontend
+  frontend:
+    build: ./frontend
+    container_name: vulnshop-web
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - vulnshop-network
+
+networks:
+  vulnshop-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
